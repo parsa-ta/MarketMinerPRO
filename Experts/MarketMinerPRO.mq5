@@ -1,6 +1,7 @@
 #property strict
 
 #include <Cycles/Cycle1.mqh>
+#include <Cycles/Cycle2.mqh>
 
 int OnInit()
 {
