@@ -3,6 +3,7 @@
 #include <Cycles/Cycle1.mqh>
 #include <Cycles/Cycle2.mqh>
 #include <Cycles/Cycle3.mqh>
+#include <Cycles/Cycle4.mqh>
 
 int OnInit()
 {
