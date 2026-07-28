@@ -105,6 +105,8 @@ input ulong Slippage = 5;
 
 #include <Core/Globals.mqh>
 #include <Indicators/IndicatorManager.mqh>
+#include <Trade/PositionManager.mqh>
+#include <Trade/TradeManager.mqh>
 #include <Cycles/Cycle1.mqh>
 #include <Cycles/Cycle2.mqh>
 #include <Cycles/Cycle3.mqh>
