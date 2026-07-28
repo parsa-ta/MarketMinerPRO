@@ -123,6 +123,11 @@ void OnDeinit(const int reason)
    ReleaseIndicators();
 }
 
+void OnDeinit(const int reason)
+{
+   ReleaseIndicators();
+}
+
 void OnTick()
 {
 
