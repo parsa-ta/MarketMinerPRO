@@ -104,6 +104,7 @@ input ulong Slippage = 5;
 
 
 #include <Core/Globals.mqh>
+#include <Indicators/IndicatorManager.mqh>
 #include <Cycles/Cycle1.mqh>
 #include <Cycles/Cycle2.mqh>
 #include <Cycles/Cycle3.mqh>
@@ -111,7 +112,14 @@ input ulong Slippage = 5;
 
 int OnInit()
 {
+   InitializeIndicators();
+
    return(INIT_SUCCEEDED);
+}
+
+void OnDeinit(const int reason)
+{
+   ReleaseIndicators();
 }
 
 void OnTick()
