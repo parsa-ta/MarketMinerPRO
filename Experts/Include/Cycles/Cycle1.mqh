@@ -58,25 +58,25 @@ void ProcessCycle1()
       if(Reverse_Signals && c1_signal != 0)
          c1_signal = (c1_signal == 1) ? 2 : 1;
 
-      if(c1_signal == 1 && c1_Buycycle)
+      if(c1_signal == 1 && C1.Buycycle)
         {
-         c1_check_for_sell_close = false;
-         if(Open[0] != c1_open_price)
+         C1.check_for_sell_close = false;
+         if(Open[0] != C1.open_price)
            {
-            c1_open_price = Open[0];
-            c1_place_order = true;
+            C1.open_price = Open[0];
+            C1.place_order = true;
            }
          else
-            c1_place_order = false;
+            C1.place_order = false;
 
-         if(c1_Buycount == 0)
+         if(C1.Buycount == 0)
            {
-            c1_account_equity_buy = AccountInfoDouble(ACCOUNT_EQUITY);
-            c1_targetprice_buy = target_amount != 0 ? (c1_account_equity_buy + target_amount) : (c1_account_equity_buy + ((c1_account_equity_buy * target_percent) / 1000));
-            c1_riskprice_buy = (c1_account_equity_buy - ((c1_account_equity_buy * Account_Risk_percent) / 1000));
+            C1.account_equity_buy = AccountInfoDouble(ACCOUNT_EQUITY);
+            C1.targetprice_buy = target_amount != 0 ? (C1.account_equity_buy + target_amount) : (C1.account_equity_buy + ((C1.account_equity_buy * target_percent) / 1000));
+            C1.riskprice_buy = (C1.account_equity_buy - ((C1.account_equity_buy * Account_Risk_percent) / 1000));
            }
 
-         if(c1_place_order)
+         if(C1.place_order)
            {
             double c1_lot = getLots(1);
             if(IsMarginSufficient(ORDER_TYPE_BUY, c1_lot))
@@ -85,33 +85,33 @@ void ProcessCycle1()
                trade.SetDeviationInPoints(UseSlippage);
                if(trade.Buy(c1_lot, _Symbol, Ask))
                  {
-                  c1_sellcycle = true;
-                  c1_check_for_buy_close = true;
-                  c1_Buycount++;
+                  C1.Sellcycle = true;
+                  C1.check_for_buy_close = true;
+                  C1.Buycount++;
                  }
               }
            }
         }
       else
-         if(c1_signal == 2 && c1_sellcycle)
+         if(c1_signal == 2 && C1.Sellcycle)
            {
-            c1_check_for_buy_close = false;
-            if(Open[0] != c1_open_price)
+            C1.check_for_buy_close = false;
+            if(Open[0] != C1.open_price)
               {
-               c1_open_price = Open[0];
-               c1_place_order = true;
+               C1.open_price = Open[0];
+               C1.place_order = true;
               }
             else
-               c1_place_order = false;
+               C1.place_order = false;
 
-            if(c1_Sellcount == 0)
+            if(C1.Sellcount == 0)
               {
-               c1_account_equity_sell = AccountInfoDouble(ACCOUNT_EQUITY);
-               c1_targetprice_sell = target_amount != 0 ? (c1_account_equity_sell + target_amount) : (c1_account_equity_sell + ((c1_account_equity_sell * target_percent) / 100));
-               c1_riskprice_sell = (c1_account_equity_sell - ((c1_account_equity_sell * Account_Risk_percent) / 100));
+               C1.account_equity_sell = AccountInfoDouble(ACCOUNT_EQUITY);
+               C1.targetprice_sell = target_amount != 0 ? (C1.account_equity_sell + target_amount) : (C1.account_equity_sell + ((C1.account_equity_sell * target_percent) / 100));
+               C1.riskprice_sell = (C1.account_equity_sell - ((C1.account_equity_sell * Account_Risk_percent) / 100));
               }
 
-            if(c1_place_order)
+            if(C1.place_order)
               {
                double c1_lot = getLots(1);
                if(IsMarginSufficient(ORDER_TYPE_SELL, c1_lot))
@@ -120,30 +120,30 @@ void ProcessCycle1()
                   trade.SetDeviationInPoints(UseSlippage);
                   if(trade.Sell(c1_lot, _Symbol, Bid))
                     {
-                     c1_Buycycle = true;
-                     c1_check_for_sell_close = true;
-                     c1_Sellcount++;
+                     C1.Buycycle = true;
+                     C1.check_for_sell_close = true;
+                     C1.Sellcount++;
                     }
                  }
               }
            }
 
-      double c1_profit_Buy = c1_account_equity_buy + MyAccountProfit_Buy(c1_MagicNumber);
-      double c1_profit_Sell = c1_account_equity_sell + MyAccountProfit_Sell(c1_MagicNumber);
+      double c1_profit_Buy = C1.account_equity_buy + MyAccountProfit_Buy(c1_MagicNumber);
+      double c1_profit_Sell = C1.account_equity_sell + MyAccountProfit_Sell(c1_MagicNumber);
 
-      if((c1_profit_Sell >= c1_targetprice_sell || c1_profit_Sell <= c1_riskprice_sell))
+      if((c1_profit_Sell >= C1.targetprice_sell || c1_profit_Sell <= C1.riskprice_sell))
         {
          ClosePositions(c1_MagicNumber, POSITION_TYPE_SELL);
-         if(c1_check_for_sell_close)
-            c1_sellcycle = false;
-         c1_Sellcount = 0;
+         if(C1.check_for_sell_close)
+            C1.Sellcycle = false;
+         C1.Sellcount = 0;
         }
-      if((c1_profit_Buy >= c1_targetprice_buy || c1_profit_Buy <= c1_riskprice_buy))
+      if((c1_profit_Buy >= C1.targetprice_buy || c1_profit_Buy <= C1.riskprice_buy))
         {
          ClosePositions(c1_MagicNumber, POSITION_TYPE_BUY);
-         if(c1_check_for_buy_close)
-            c1_Buycycle = false;
-         c1_Buycount = 0;
+         if(C1.check_for_buy_close)
+            C1.Buycycle = false;
+         C1.Buycount = 0;
         }
      }
 

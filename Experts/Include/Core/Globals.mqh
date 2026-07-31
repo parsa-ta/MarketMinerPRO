@@ -1,6 +1,8 @@
 #ifndef __GLOBALS_MQH__
 #define __GLOBALS_MQH__
 
+#include <Core/CycleState.mqh>
+
 #include <Trade\Trade.mqh>
 #include <Trade\PositionInfo.mqh>
 #include <Trade\SymbolInfo.mqh>
