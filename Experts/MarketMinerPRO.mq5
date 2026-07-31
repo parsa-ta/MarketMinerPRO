@@ -108,7 +108,6 @@ input ulong Slippage = 5;
 #include <Trade/PositionManager.mqh>
 #include <Trade/TradeManager.mqh>
 #include <Core/InitializationManager.mqh>
-#include <Core/TickManager.mqh>
 #include <Cycles/Cycle1.mqh>
 #include <Cycles/Cycle2.mqh>
 #include <Cycles/Cycle3.mqh>
@@ -117,6 +116,16 @@ input ulong Slippage = 5;
 int OnInit()
 {
    return InitializeExpert();
+}
+
+void OnDeinit(const int reason)
+{
+   ReleaseIndicators();
+}
+
+void OnDeinit(const int reason)
+{
+   ReleaseIndicators();
 }
 
 void OnDeinit(const int reason)
