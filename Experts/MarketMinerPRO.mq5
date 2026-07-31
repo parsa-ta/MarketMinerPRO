@@ -5,7 +5,7 @@ input bool cycle2 = false;
 input bool cycle3 = false;
 input bool cycle4 = false;
 
-input string C1 = "--- Cycle1 Settings -------------- ";
+input string C1_Header= "--- Cycle1 Settings -------------- ";
 input int MAPeriod = 3;
 input int MA_shift = 0;
 input ENUM_MA_METHOD MA_method = MODE_EMA;
@@ -50,7 +50,7 @@ input double target_amount  = 0;
 input bool Reverse_Signals = false;
 input ulong c1_MagicNumber = 111;
 
-input string C2 = "--- Cycle2 Settings --------------";
+input string C2_Header= "--- Cycle2 Settings --------------";
 input int InpMAPeriod2 = 25;
 input int InpMAShift2 = 0;
 input ENUM_MA_METHOD InpMAMethod2 = MODE_EMA;
@@ -66,7 +66,7 @@ input ENUM_TIMEFRAMES TimeFrame2 = PERIOD_CURRENT;
 input bool Reverse_Signals2 = false;
 input ulong c2_MagicNumber = 333;
 
-input string C3 = "--- Cycle3 Settings --------------";
+input string C3_Header= "--- Cycle3 Settings --------------";
 input int InpMAPeriod3 = 25;
 input int InpMAShift3 = 0;
 input ENUM_MA_METHOD InpMAMethod3 = MODE_EMA;
@@ -82,7 +82,7 @@ input ENUM_TIMEFRAMES TimeFrame3 = PERIOD_CURRENT;
 input bool Reverse_Signals3 = false;
 input ulong c3_MagicNumber = 555;
 
-input string C4 = "--- Cycle4 Settings --------------";
+input string C4_Header= "--- Cycle4 Settings --------------";
 input int InpMAPeriod4 = 99;
 input int InpMAShift4 = 0;
 input ENUM_MA_METHOD InpMAMethod4 = MODE_EMA;
